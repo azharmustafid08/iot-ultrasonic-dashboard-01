@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dashboard Monitoring i-TAKAK</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Dashboard Monitoring i-TAKAK</h1>
+      <p>Sistem monitoring jarak ultrasonic, rata-rata volume, relay, Firebase, dan Google Sheet</p>
+    </header>
+
+    <section class="status-panel">
+      <div class="status-card">
+        <h3>Sensor 1</h3>
+        <p id="sensor1Value">-- cm</p>
+      </div>
+
+      <div class="status-card">
+        <h3>Sensor 2</h3>
+        <p id="sensor2Value">-- cm</p>
+      </div>
+
+      <div class="status-card">
+        <h3>Rata-rata</h3>
+        <p id="averageValue">-- cm</p>
+      </div>
+
+      <div class="status-card">
+        <h3>Relay</h3>
+        <p id="relayValue">--</p>
+      </div>
+    </section>
+
+    <section class="info-box">
+      <p><strong>Update terakhir:</strong> <span id="timestampValue">--</span></p>
+      <p><strong>Status Sensor 1:</strong> <span id="sensor1Status">--</span></p>
+      <p><strong>Status Sensor 2:</strong> <span id="sensor2Status">--</span></p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Grafik 100 Data Terakhir dari Firebase</h2>
+        <p>Data ini digunakan untuk pemantauan cepat secara online.</p>
+      </div>
+
+      <canvas id="firebaseHistoryChart"></canvas>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Data Historis Berdasarkan Tanggal dari Google Sheet</h2>
+        <p>Pilih tanggal untuk menampilkan data historis yang tersimpan di Google Sheet.</p>
+      </div>
+
+      <div class="form-row">
+        <input type="date" id="dateInput" />
+        <button id="loadDateButton">Tampilkan Data</button>
+      </div>
+
+      <p id="sheetStatus">Belum ada tanggal dipilih.</p>
+
+      <canvas id="sheetHistoryChart"></canvas>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Timestamp</th>
+              <th>Sensor 1</th>
+              <th>Sensor 2</th>
+              <th>Rata-rata</th>
+              <th>Relay</th>
+            </tr>
+          </thead>
+          <tbody id="sheetTableBody">
+            <tr>
+              <td colspan="6">Belum ada data ditampilkan.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <p>Dashboard i-TAKAK berbasis ESP32, Firebase, Google Sheet, dan GitHub Pages.</p>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
